@@ -1,0 +1,62 @@
+Imports System.IO.Ports
+
+Public Class Form1
+
+    'Private WithEvents serialPort As New SerialPort("COM7", 9600, Parity.None, 8, StopBits.One)
+    Private powerAllowed As Double = 0
+    Private powerConsumed As Double = 5
+
+    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Try
+            SerialPort1.Open()
+        Catch ex As Exception
+            MessageBox.Show("Error opening serial port: " & ex.Message)
+        End Try
+    End Sub
+
+    Private Sub serialPort1_DataReceived(sender As Object, e As SerialDataReceivedEventArgs) Handles SerialPort1.DataReceived
+        Dim data As String = SerialPort1.ReadLine()
+
+        ' Check if the string starts with the expected prefix
+        If data.StartsWith("power allowed: ") Then
+            ' Extract the power allowed value from the string
+            Dim powerAllowedString As String = data.Substring(15) ' Remove the prefix
+
+            Dim powerAllowedValue As Double
+            If Double.TryParse(powerAllowedString, powerAllowedValue) Then
+                ' Successfully parsed the value
+                powerAllowed = powerAllowedValue ' Assign to the powerAllowed variable
+                'MessageBox.Show(powerAllowed)
+                UpdateUI() ' Update UI elements
+            Else
+                ' Handle parsing error (optional)
+                MessageBox.Show("Invalid power allowed value received.")
+            End If
+
+        End If
+    End Sub
+
+    Private Sub UpdateUI()
+        If Me.InvokeRequired Then
+            Me.Invoke(New Action(Sub()
+                                     TextBoxPowerConsumed.Text = powerAllowed.ToString("0.00") & " kWh"
+                                     ProgressBar1.Value = CInt(powerConsumed)
+                                 End Sub))
+        Else
+            ' Update UI elements directly if on the UI thread
+            TextBoxPowerConsumed.Text = powerConsumed.ToString("0.00") & " kWh"
+            ProgressBar1.Value = CInt(powerConsumed)
+        End If
+    End Sub
+
+    Private Sub ButtonStartCharging_Click(sender As Object, e As EventArgs) Handles ButtonStartCharging.Click
+        ' Implement charging logic here, considering power allowed and safety limits
+        ' Update powerConsumed based on charging time and current
+        UpdateUI()
+    End Sub
+
+    Private Sub Form1_FormClosed(sender As Object, e As EventArgs) Handles Me.FormClosed
+        SerialPort1.Close()
+    End Sub
+
+End Class
