@@ -1,0 +1,12 @@
+C:\Users\Bilal\source\repos\Simple EV Charger\Simple EV Charger\bin\Debug\Simple EV Charger.exe.config
+C:\Users\Bilal\source\repos\Simple EV Charger\Simple EV Charger\bin\Debug\Simple EV Charger.exe
+C:\Users\Bilal\source\repos\Simple EV Charger\Simple EV Charger\bin\Debug\Simple EV Charger.pdb
+C:\Users\Bilal\source\repos\Simple EV Charger\Simple EV Charger\bin\Debug\Simple EV Charger.xml
+C:\Users\Bilal\source\repos\Simple EV Charger\Simple EV Charger\obj\Debug\Simple EV Charger.vbproj.AssemblyReference.cache
+C:\Users\Bilal\source\repos\Simple EV Charger\Simple EV Charger\obj\Debug\Simple_EV_Charger.Form1.resources
+C:\Users\Bilal\source\repos\Simple EV Charger\Simple EV Charger\obj\Debug\Simple_EV_Charger.Resources.resources
+C:\Users\Bilal\source\repos\Simple EV Charger\Simple EV Charger\obj\Debug\Simple EV Charger.vbproj.GenerateResource.cache
+C:\Users\Bilal\source\repos\Simple EV Charger\Simple EV Charger\obj\Debug\Simple EV Charger.vbproj.CoreCompileInputs.cache
+C:\Users\Bilal\source\repos\Simple EV Charger\Simple EV Charger\obj\Debug\Simple EV Charger.exe
+C:\Users\Bilal\source\repos\Simple EV Charger\Simple EV Charger\obj\Debug\Simple EV Charger.xml
+C:\Users\Bilal\source\repos\Simple EV Charger\Simple EV Charger\obj\Debug\Simple EV Charger.pdb
