@@ -1,0 +1,135 @@
+Imports System.IO.Ports
+Imports System.Text
+Imports System.Threading
+Imports System.Threading.Tasks
+Public Class Form1
+
+    'Private WithEvents serialPort As New SerialPort("COM7", 9600, Parity.None, 8, StopBits.One)
+    Private powerAllowed As Double = 0
+    Private powerConsumed As Double = 0
+    Private voltageRating As Double = 220 ' Example voltage rating
+    Private currentRating As Double = 72 ' Example current rating
+    Private batteryCapacity As Double = 30 ' Battery capacity in KWh
+    Dim soc As Double
+    Dim availablePower As Double
+    Private chargingActive As Boolean = False ' Flag for charging state
+
+    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ButtonDisconnectEV.Enabled = False
+        Try
+            SerialPort1.Open()
+        Catch ex As Exception
+            MessageBox.Show("Error opening serial port: " & ex.Message)
+        End Try
+    End Sub
+
+    Private Sub serialPort1_DataReceived(sender As Object, e As SerialDataReceivedEventArgs) Handles SerialPort1.DataReceived
+        Dim data As String = SerialPort1.ReadLine()
+
+        ' Check if the string starts with the expected prefix
+        If data.StartsWith("Power Allowed: ") Then
+            ' Extract the power allowed value from the string
+            Dim powerAllowedString As String = data.Substring(15) ' Remove the prefix
+            Dim powerAllowedValue As Double
+            If Double.TryParse(powerAllowedString, powerAllowedValue) Then
+                ' Successfully parsed the value
+                powerAllowed = powerAllowedValue ' Assign to the powerAllowed variable
+                'MessageBox.Show(powerAllowed)
+                SerialPort1.WriteLine("Confirmation received")
+                UpdateUI() ' Update UI elements
+            Else
+                ' Handle parsing error (optional)
+
+            End If
+
+        End If
+    End Sub
+
+    Private Sub UpdateUI()
+        If Me.InvokeRequired Then
+            Me.Invoke(New Action(Sub()
+                                     TextBoxPowerAvailable.Text = availablePower.ToString("0.00") & " kWh"
+                                     TextBoxPowerAllowed.Text = powerAllowed.ToString("0.00") & " kWh"
+                                     TextBoxPowerConsumed.Text = powerConsumed.ToString("0.00") & " kWh"
+                                     ProgressBar1.Value = CInt(soc)
+                                     TextBoxSOC.Text = soc.ToString("0.00") & " %"
+                                     SerialPort1.WriteLine("SOC:" & soc.ToString("0.00"))
+                                 End Sub))
+        Else
+            ' Update UI elements directly if on the UI thread
+            TextBoxPowerAvailable.Text = availablePower.ToString("0.00") & " kWh"
+            TextBoxPowerAllowed.Text = powerAllowed.ToString("0.00") & " kWh"
+            TextBoxPowerConsumed.Text = powerConsumed.ToString("0.00") & " kWh"
+            ProgressBar1.Value = CInt(soc)
+            TextBoxSOC.Text = soc.ToString("0.00") & " %"
+            SerialPort1.WriteLine("SOC:" & soc.ToString("0.00"))
+        End If
+    End Sub
+
+
+    Private Sub ButtonStartCharging_Click(sender As Object, e As EventArgs) Handles ButtonConnectEV.Click
+        ' Implement charging logic here, considering power allowed and safety limits
+        ' Update powerConsumed based on charging time and current
+        ' Ensure power allowed is received and valid
+        While (chargingActive = False)
+            SerialPort1.WriteLine("EV Con")
+
+            If Not chargingActive Then
+                chargingActive = True
+                ButtonConnectEV.Enabled = False
+                ButtonDisconnectEV.Enabled = True
+                Task.Run(AddressOf StartChargingLoop)
+            End If
+        End While
+    End Sub
+    Private Sub ButtonStopCharging_Click(sender As Object, e As EventArgs) Handles ButtonDisconnectEV.Click
+        While (chargingActive = True)
+            SerialPort1.WriteLine("EV Dis")
+            If chargingActive Then
+                chargingActive = False
+                ButtonConnectEV.Enabled = True
+                ButtonDisconnectEV.Enabled = False
+                powerAllowed = 0
+                availablePower = 0
+                UpdateUI()
+            End If
+        End While
+    End Sub
+    Private Sub StartChargingLoop()
+        While chargingActive = True And powerAllowed >= 0
+            ' Calculate available charging power based on limitations
+            availablePower = Math.Min(powerAllowed, ((voltageRating * currentRating) / 1000))
+
+            ' Update power consumed based on available power and time
+            powerConsumed += availablePower * 30 / 3600 ' 1 hour = 3600 and 30 represent thread sleep
+
+            ' Calculate and update State of Charge (SOC)
+            soc = powerConsumed / batteryCapacity * 100
+
+            ' Update UI elements
+
+
+            ' Check for battery full condition (adjust threshold accordingly)
+            If soc >= 95 Then
+                MessageBox.Show("Battery almost full, stopping charging.")
+                powerAllowed = 0
+            End If
+
+            UpdateUI()
+            ' Delay between loop iterations to avoid excessive CPU usage
+            Thread.Sleep(30000) ' Adjust delay as needed 3 seconds
+        End While
+
+        ' Ensure final update of UI after stopping charging
+
+    End Sub
+
+    Private Sub Form1_FormClosed(sender As Object, e As EventArgs) Handles Me.FormClosed
+        SerialPort1.Close()
+    End Sub
+
+    Private Sub TextBox2_TextChanged(sender As Object, e As EventArgs) Handles TextBox2.TextChanged
+
+    End Sub
+End Class
+
