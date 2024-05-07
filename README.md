@@ -4,7 +4,7 @@ Bilal Ahmad
 ## Overview
 This smart energy meter not only serves its fundamental purpose of billing data management but also facilitates the implementation of demand response management (DRM) at the user level. It achieves this by encouraging users to participate in DRM activities, such as turning off non-essential and non-critical loads. The project aims to integrate electric vehicles (EVs) into the system without overloading the existing power network. To achieve this, the grid assigns each consumer a sanctioned load, and the smart meter subsequently manages EV charging within that allocated limit. Additionally, the meter implements the concept of smart EV charging by scheduling EV charging during off-peak grid hours. Users can interact with the meter through a cloud platform, enabling them to monitor their consumption and EV charging data. Moreover, they can remotely control their loads according to their preferences and requirements.
 
-![Alt text](https://github.com/BilalAhmadPieas/Smart-Energy-Meter/blob/6afa2721b81c1f22f226636811481fd647474290/images/IOT%20Project.png)
+![Alt text](https://github.com/BilalAhmadPieas/Smart-Energy-Meter/blob/9a83cd9a00d45e2ae4f4ca3d674ac924762f2cfa/images/IOT%20Project%20(1).png)
 
 ## Main components and their features:
 - **EV Charger**-- Charge EV at power allowed by smart meter and feedback SOC% value.
