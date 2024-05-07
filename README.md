@@ -7,12 +7,10 @@ This smart energy meter not only serves its fundamental purpose of billing data 
 ![Alt text](https://github.com/BilalAhmadPieas/Smart-Energy-Meter/blob/6afa2721b81c1f22f226636811481fd647474290/images/IOT%20Project.png)
 
 ## Main components and their features:
-- **The heater and the ventilator**--Actively controlling the temperature inside the chamber within the range of 20-40 degree C with an error that is less than 1 degree C.
-- **The Humidifier/dehumidifier**--Activelt controlling the humidity level inside the chamber within the range of 25-75 percent with an error that is less than 5 percent.
-- **The chamber**--insulated box with a volume of ca. 15 liters.
-- **Control input buttons**--Consists of physical buttons to get input from the user.
-- **A Display**--Showing the status and the temperature/humidity information.
-- **Control software**--Monitor and control the climate in real-time. Any given temperature/humidity setting can be reached within max. 2 minutes regardless of the initial condition.
+- **EV Charger**-- Charge EV at power allowed by smart meter and feedback SOC% value.
+- **ESP Controller**--Acting as smart meter, implement smart charging and load control.
+- **NetPie Cloud**--For monitoring and remote load control.
+- **Solid State Relay**--For implementing load control.
 
 ## Implementation
 The final prototype uses a 60 Watt DC heat coil as a heater and a 90X90mm 12 DC fan as a ventilator. An off the shelf humidifier/dehumidifier unit from TGGS is used. These devices are connected to the controller via a relay board that can be turned on and off using the IO pin of the controller.
