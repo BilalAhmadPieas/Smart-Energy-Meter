@@ -15,9 +15,12 @@ This smart energy meter not only serves its fundamental purpose of billing data 
 ## Implementation
 
 The final prototype functions as a smart meter, regulating the power allocated for EV charging in conjunction with other residential loads and grid conditions.
+
 When the EV is not connected, the prototype offers remote load monitoring and control. It encourages user participation in Demand Response Management (DRM) by suggesting the deactivation of non-critical loads during peak grid times.
 Upon EV connection, the user inputs a target time using a 24-hour slider on the cloud platform. Considering the running load, sanctioned load limit, and grid conditions, the smart meter's controller specifies the charging power for the EV and provides feedback to the user regarding whether the EV can be fully charged within the available time. If not, it offers insights into the possible State of Charge (SOC) percentage achievable within the timeframe. If feasible, it estimates the remaining time required for a full charge.
+
 Based on the user's driving profile, they can choose to accept the projected SOC or deactivate non-critical loads. Additionally, the user has the option to activate emergency EV charging, wherein the meter allows the EV charger to operate at increased pricing without time or power limitations.
+
 A real-time clock utilizing an NTP server is integrated into the project to ensure precise calculations relative to actual time. During peak grid times when emergency charging is deactivated, the meter suspends EV charging until the peak period concludes, resuming afterward. The available time algorithm exclusively considers off-peak periods for charging.
 In the Node MCU 12-E, we utilize an OLED screen to display real-time power and energy consumption data. For the prototype, an EV charger is emulated in Visual Basic, receiving power commands from the ESP via the serial port and subsequently charging the EV battery. Utilizing elapsed time concepts, the charger sends updated SOC percentage values to the controller.
 The ESP is connected to the Netpie cloud via WiFi, transmitting data at specific intervals to prevent communication traffic overload. On the Netpie cloud platform, we showcase EV SOC percentages alongside power and energy consumption data, offering control over loads and target time sliders.
