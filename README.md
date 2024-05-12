@@ -26,9 +26,9 @@ In the Node MCU 12-E, we utilize an OLED screen to display real-time power and e
 The ESP is connected to the Netpie cloud via WiFi, transmitting data at specific intervals to prevent communication traffic overload. On the Netpie cloud platform, we showcase EV SOC percentages alongside power and energy consumption data, offering control over loads and target time sliders.
 
 
-## Demo (optional)
-Some photos or videos...
+## Demo 
 
+![Alt text](![Alt text](https://github.com/BilalAhmadPieas/Smart-Energy-Meter/blob/9a83cd9a00d45e2ae4f4ca3d674ac924762f2cfa/images/IOT%20Project%20(1).png))
 [![A video](https://img.youtube.com/vi/pnN55lJG_4c/0.jpg)](https://www.youtube.com/watch?v=pnN55lJG_4c)
 
 ## Weekly update
