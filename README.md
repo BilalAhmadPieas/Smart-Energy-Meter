@@ -27,7 +27,7 @@ The ESP is connected to the Netpie cloud via WiFi, transmitting data at specific
 
 
 ## Demo 
-[![A video](https://img.youtube.com/vi/pnN55lJG_4c/0.jpg)](https://youtu.be/ndhDb2gsNR8)
+[![A video](https://github.com/BilalAhmadPieas/Smart-Energy-Meter/blob/738662839de0f8bd34da1c1c5cb6d3f390365bc1/images/Demo.png)](https://youtu.be/ndhDb2gsNR8)
 
 ## Weekly update
 - Week 1: I learned visual basics and how we can simulate various models in it. Than I modeled EV Charger and Battery charging in Visual basics, which take input of EV Allowed Power from ESP and Feedback battery SOC% after certain inverval. 
