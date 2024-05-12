@@ -27,7 +27,7 @@ The ESP is connected to the Netpie cloud via WiFi, transmitting data at specific
 
 
 ## Demo 
-[![A video](https://pern-my.sharepoint.com/:v:/g/personal/bsee1741_pieas_edu_pk/EfCoFuzKUhtPv0IRI49kaIABWblmgDtsEBNxuK5fSPp0RA?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=fPCkzs)
+[![A video](https://pern-my.sharepoint.com/personal/bsee1741_pieas_edu_pk/_layouts/15/stream.aspx?id=%2Fpersonal%2Fbsee1741%5Fpieas%5Fedu%5Fpk%2FDocuments%2FDocuments%2FMS%20ECE%2FMS%202nd%20Semester%2FIoT%2FSmart%20Meter%20Demo%2Emp4&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&ga=1&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2Eb9279fee%2Dec07%2D4171%2D8fba%2Ddac334d66996)
 
 ## Weekly update
 - Week 1: I learned visual basics and how we can simulate various models in it. Than I modeled EV Charger and Battery charging in Visual basics, which take input of EV Allowed Power from ESP and Feedback battery SOC% after certain inverval. 
